@@ -18,20 +18,13 @@ fun trickOrTreat(isTrick: Boolean, extraTreat: ((Int) -> String)?): () -> Unit {
 }
 
 fun main() {
-    /*
-    val trickFunction = trick
-    trick()
-    trickFunction()
-    treat()
-    */
 
-    val coins: (Int) -> String = { quantity -> 
-        "$quantity quarters"
-    }
-
-    val treatFunction = trickOrTreat(false, coins)
+    val treatFunction = trickOrTreat(false) { "$it quarters" }
     val trickFunction = trickOrTreat(true, null)
 
-    treatFunction()
     trickFunction()
+
+    repeat(4) {
+        treatFunction()
+    }
 }
